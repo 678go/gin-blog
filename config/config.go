@@ -42,7 +42,7 @@ func InitApp() *App {
 		os.Exit(-1)
 	}
 	app.L = slog.Default().With("model", "app")
-	slog.Info("初始化app成功！")
+	slog.Info("初始化app成功!")
 	return app
 }
 
@@ -75,7 +75,7 @@ func InitDB() *gorm.DB {
 	sql.SetMaxOpenConns(m.MaxConn)
 	sql.SetMaxIdleConns(m.MaxIdle)
 	sql.SetConnMaxIdleTime(1 * time.Hour)
-	slog.Info("初始化数据库连接信息成功！")
+	slog.Info("初始化数据库连接信息成功!")
 	return db
 }
 
