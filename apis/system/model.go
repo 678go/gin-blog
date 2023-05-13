@@ -12,7 +12,8 @@ type System struct {
 
 type LoginData struct {
 	gorm.Model
-	User   apis.User `json:"-" gorm:"foreignKey:UserID"`
+	UserId uint      `json:"user_id"`
+	User   apis.User `json:"-" gorm:"foreignKey:UserId"`
 	IP     string    `json:"IP"`
 	Device string    `json:"device"`
 }
