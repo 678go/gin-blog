@@ -1,6 +1,9 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/spf13/cobra"
+	"os"
+)
 
 var filePath string
 
@@ -13,6 +16,11 @@ var RootCmd = &cobra.Command{
 	},
 }
 
+func Execute() {
+	if err := RootCmd.Execute(); err != nil {
+		os.Exit(-1)
+	}
+}
 func init() {
 	RootCmd.PersistentFlags().StringVarP(&filePath, "filePath", "f", "/config/dev.ini", "dev env")
 }
