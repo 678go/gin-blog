@@ -15,12 +15,13 @@ type User struct {
 	Phone    string      `json:"phone,omitempty" gorm:"size:18"`                                                  // 电话
 	ThereId  string      `json:"there_id,omitempty" gorm:"size:60"`                                               // 三方id
 	Role     common.Role `json:"role,omitempty" gorm:"size:4;default:1"`                                          // 用户权限
-	Articles []Article   `gorm:"foreignKey:UserId"`                                                               // 文章表
+	Articles []Article   `gorm:"foreignKey:ArticleId"`                                                            // 文章表
 	Collects []Article   `json:"-" gorm:"many2many:user_collects;joinForeignKey:UserId;JoinReferences:ArticleID"` // 收藏了哪些文章
 }
 
 type Article struct {
 	gorm.Model
+	ArticleId    uint      `json:"article-id"`                       // 用户ID
 	Title        string    `gorm:"size:32" json:"title,omitempty"`   // 标题
 	Abstract     string    `json:"abstract,omitempty"`               // 简介
 	Content      string    `json:"content,omitempty"`                // 内容
@@ -28,8 +29,7 @@ type Article struct {
 	CollectCount int       `json:"collectCount,omitempty"`           // 收藏量
 	Tags         []Tag     `gorm:"many2many:article_tags" json:"-"`  //标签
 	Comments     []Comment `gorm:"foreignKey:ArticleId" json:"-"`    // 评论列表
-	User         User      `gorm:"foreignKey:UserId"`                // 文章作者
-	UserId       uint      `json:"user_id"`                          // 用户ID
+	User         User      `gorm:"foreignKey:ArticleId"`             // 文章作者
 	Category     string    `json:"category,omitempty"`               // 文章分类
 	Source       string    `json:"source,omitempty"`                 // 文章来源
 	Word         int       `json:"word,omitempty"`                   //文章字数

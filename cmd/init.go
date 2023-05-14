@@ -39,6 +39,7 @@ func run() {
 		&apis.Article{}); err != nil {
 		return
 	}
+	slog.Info("表结构初始化完成")
 }
 
 func init() {

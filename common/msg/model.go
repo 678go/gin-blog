@@ -1,17 +1,17 @@
 package msg
 
 type Response struct {
-	code int
-	data interface{}
-	msg  string
+	Code int
+	Data interface{}
+	Msg  string
 }
 
 func (res *Response) ReturnOK() *Response {
-	res.code = 200
+	res.Code = 200
 	return res
 }
 
 func (res *Response) ReturnError(code int) *Response {
-	res.code = code
+	res.Code = code
 	return res
 }

@@ -17,7 +17,12 @@ func Setup() (r *gin.Engine) {
 		context.String(http.StatusOK, "pong")
 	})
 
+	g := r.Group("")
+
 	// 系统管理
-	system.SysInfoRouter(r.Group(""))
+	system.SysInfoRouter(g)
+
+	// 图片路由
+	system.SysImagesRouter(g)
 	return
 }
