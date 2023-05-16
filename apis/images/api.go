@@ -8,6 +8,13 @@ import (
 )
 
 // ImageUpload 上传图片
+// @Tags 图片管理
+// @Summary 上传图片
+// @Description 上传图片
+// @Accept json
+// @Produce json
+// @Success 200 {object} msg.Response{}
+// @Router /images [post]
 func ImageUpload(c *gin.Context) {
 	multipartForm, err := c.MultipartForm()
 	if err != nil {

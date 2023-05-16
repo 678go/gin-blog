@@ -1,9 +1,12 @@
 package routers
 
 import (
+	_ "gin-blog/docs"
 	"gin-blog/middleware"
 	"gin-blog/routers/system"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"net/http"
 )
 
@@ -17,12 +20,12 @@ func Setup() (r *gin.Engine) {
 		context.String(http.StatusOK, "pong")
 	})
 
+	// swagger路由
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	g := r.Group("")
 
-	// 系统管理
-	system.SysInfoRouter(g)
-
-	// 图片路由
-	system.SysImagesRouter(g)
+	system.SysInfoRouter(g)   // 系统管理
+	system.SysImagesRouter(g) // 图片路由
+	system.SysMenuRouter(r)   // 菜单路由
 	return
 }
